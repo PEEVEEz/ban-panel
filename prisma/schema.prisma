@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Servers {
+  id       Int     @id @default(autoincrement())
+  owner    String
+  name     String
+  api_key  String  @unique
+  bans     Bans[]  // Define a relation to Bans model
+
+  verified Boolean @default(false)
+}
+
+model Bans {
+  id          Int      @id @default(autoincrement())
+  name String
+
+  identifiers Json
+
+  reason      String
+  serverId    Int      // Foreign key referencing Servers.id
+  server      Servers  @relation(fields: [serverId], references: [id])
+  expires     DateTime
+}
