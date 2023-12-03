@@ -11,7 +11,7 @@ const uid = new ShortUniqueId({
 
 export async function POST(req: NextRequest) {
     const session = await getServerSession(authOptions);
-    if (!session) return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {
+    if (!session) return NextResponse.json({ message: "Unauthorized" }, {
         status: 401
     })
 
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     });
 
     if (!server || server.owner !== session.user.id) {
-        return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {
+        return NextResponse.json({ message: "Unauthorized" }, {
             status: 401
         })
     }

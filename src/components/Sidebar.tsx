@@ -7,7 +7,6 @@ import { signOut } from "next-auth/react";
 import { IcBaselineLogout } from "./icons/Logout";
 import { SolarServer2Bold } from "./icons/Server";
 import { MaterialSymbolsPerson } from "./icons/Person";
-import { MaterialSymbolsArrowRightAltRounded } from "./icons/ArrowRight";
 import { MaterialSymbolsArrowLeftAltRounded } from "./icons/ArrowLeft";
 
 interface Props {

@@ -8,7 +8,7 @@ export async function DELETE(_: NextRequest, { params }: { params: { id: string 
     const id = Number(params.id)
     const session = await getServerSession(authOptions);
 
-    if (!session) return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {
+    if (!session) return NextResponse.json({ message: "Unauthorized" }, {
         status: 401
     })
 
@@ -19,7 +19,7 @@ export async function DELETE(_: NextRequest, { params }: { params: { id: string 
     });
 
     if (!server || server.owner !== session.user.id) {
-        return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {
+        return NextResponse.json({ message: "Unauthorized" }, {
             status: 401
         })
     }

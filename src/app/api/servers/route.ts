@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
 
     const session = await getServerSession(authOptions);
-    if (!session) return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {
+    if (!session) return NextResponse.json({ message: "Unauthorized" }, {
         status: 401
     })
 
@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
     const session = await getServerSession(authOptions);
-    if (!session) return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {
+    if (!session) return NextResponse.json({ message: "Unauthorized" }, {
         status: 401
     })
 
